@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinemaholic Hub | Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-film"></i>
+      <span>CINEMAHOLIC</span><span class="hub"> HUB</span>
+    </div>
+    <div class="nav-links">
+  <a href="home.html" class="active">Home</a>
+  <a href="#">Movies</a>
+  <a href="#">Trending</a>
+  <a href="snacks.html">Snacks</a>
+  <a href="activity.html">My Activity</a>
+</div>
+    <div class="nav-right">
+      <div class="search-bar">
+        <input type="text" placeholder="Search movies...">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="icon-circle"><i class="far fa-bell"></i></div>
+      <div class="icon-circle"><i class="far fa-user"></i></div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- NOW SHOWING -->
+    <div class="section-header">
+      <div class="title-badge">
+        <div class="red-line"></div>
+        <h2>Now Showing</h2>
+      </div>
+      <div class="view-link">View All <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" onclick="slide('nowShowing', -1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="scroll-row" id="nowShowing">
+
+        <div class="movie-card"
+          data-title="Hereditary: Legacy"
+          data-year="2025"
+          data-rating="9.6"
+          data-genre="Horror"
+          data-duration="2h 07m"
+          data-desc="A family's dark secrets come to light as they uncover a terrifying legacy that refuses to stay buried."
+          data-img="img/the-conjuring-movies-in-order-01-the-nun-1660834034.avif">
+          <div class="poster-img">
+            <img src="img/the-conjuring-movies-in-order-01-the-nun-1660834034.avif" alt="Hereditary Legacy">
+            <div class="rating-pill"><i class="fas fa-star"></i> 9.6</div>
+          </div>
+          <div class="card-info">
+            <div class="movie-title">Hereditary: Legacy</div>
+            <div class="movie-year">2025</div>
+            <button class="book-btn">Book Tickets</button>
+          </div>
+        </div>
+
+        <div class="movie-card"
+          data-title="The Conjuring: Last Rite"
+          data-year="2025"
+          data-rating="9.4"
+          data-genre="Horror"
+          data-duration="2h 15m"
+          data-desc="The Warrens face their most terrifying case yet as an ancient evil resurfaces in a small town."
+          data-img="img/The-Nun-.webp">
+          <div class="poster-img">
+            <img src="img/The-Nun-.webp" alt="The Conjuring: Last Rite">
+            <div class="rating-pill"><i class="fas fa-star"></i> 9.4</div>
+          </div>
+          <div class="card-info">
+            <div class="movie-title">The Conjuring: Last Rite</div>
+            <div class="movie-year">2025</div>
+            <button class="book-btn">Book Tickets</button>
+          </div>
+        </div>
+
+        <div class="movie-card"
+          data-title="Smile 2"
+          data-year="2025"
+          data-rating="8.9"
+          data-genre="Horror"
+          data-duration="2h 02m"
+          data-desc="The terrifying smile curse returns, spreading its evil to a new set of unsuspecting victims."
+          data-img="img/E4DEAA0E-647D-441E-B1D0-8C6AC5213D3B.webp">
+          <div class="poster-img">
+            <img src="img/E4DEAA0E-647D-441E-B1D0-8C6AC5213D3B.webp" alt="Smile 2">
+            <div class="rating-pill"><i class="fas fa-star"></i> 8.9</div>
+          </div>
+          <div class="card-info">
+            <div class="movie-title">Smile 2</div>
+            <div class="movie-year">2025</div>
+            <button class="book-btn">Book Tickets</button>
+          </div>
+        </div>
+
+        <div class="movie-card"
+          data-title="Nosferatu"
+          data-year="2025"
+          data-rating="9.2"
+          data-genre="Horror"
+          data-duration="2h 12m"
+          data-desc="A reimagining of the classic vampire tale, where an ancient darkness threatens to consume the living."
+          data-img="img/will-james-review-the-new-nosferatu-movie-or-not-v0-muxqx5qnlfld1.webp">
+          <div class="poster-img">
+            <img src="img/will-james-review-the-new-nosferatu-movie-or-not-v0-muxqx5qnlfld1.webp" alt="Nosferatu">
+            <div class="rating-pill"><i class="fas fa-star"></i> 9.2</div>
+          </div>
+          <div class="card-info">
+            <div class="movie-title">Nosferatu</div>
+            <div class="movie-year">2025</div>
+            <button class="book-btn">Book Tickets</button>
+          </div>
+        </div>
+
+        <div class="movie-card"
+          data-title="Talk To Me"
+          data-year="2024"
+          data-rating="9.5"
+          data-genre="Horror"
+          data-duration="1h 35m"
+          data-desc="A group of friends discover how to conjure spirits using an embalmed hand, unleashing terrifying consequences."
+          data-img="img/t1brT5MT1TRwFkZaSTr62Wyc4K5.webp">
+          <div class="poster-img">
+            <img src="img/t1brT5MT1TRwFkZaSTr62Wyc4K5.webp" alt="Talk To Me">
+            <div class="rating-pill"><i class="fas fa-star"></i> 9.5</div>
+          </div>
+          <div class="card-info">
+            <div class="movie-title">Talk To Me</div>
+            <div class="movie-year">2024</div>
+            <button class="book-btn">Book Tickets</button>
+          </div>
+        </div>
+
+      </div>
+      <button class="slider-btn next" onclick="slide('nowShowing', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- TRAILERS -->
+    <div class="section-header">
+      <div class="title-badge">
+        <div class="red-line"></div>
+        <h2>Trailers</h2>
+      </div>
+      <div class="view-link">View All <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" onclick="slide('trailers', -1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="scroll-row" id="trailers">
+
+        <!-- ↓ UPDATE filename to match your vids folder -->
+        <div class="trailer-card" onclick="openTrailer('vids/Hereditary_Official Trailer.mp4')">
+          <div class="trailer-preview">
+            <video class="trailer-thumb" muted preload="metadata">
+              <source src="vids/Hereditary_Official Trailer.mp4" type="video/mp4">
+            </video>
+            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            <div class="trailer-duration">2:46</div>
+          </div>
+          <div class="trailer-title">Hereditary: Legacy – Official Trailer</div>
+        </div>
+
+        <!-- ↓ UPDATE filename to match your vids folder -->
+        <div class="trailer-card" onclick="openTrailer('vids/The_Conjuring_Last_Rites_Trailer.mp4.mp4')">
+          <div class="trailer-preview">
+            <video class="trailer-thumb" muted preload="metadata">
+              <source src="vids/The_Conjuring_Last_Rites_Trailer.mp4.mp4" type="video/mp4">
+            </video>
+            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            <div class="trailer-duration">2:31</div>
+          </div>
+          <div class="trailer-title">The Conjuring: Last Rite – Trailer</div>
+        </div>
+
+        <!-- ↓ UPDATE filename to match your vids folder -->
+        <div class="trailer-card" onclick="openTrailer('vids/smile2-trailer.mp4')">
+          <div class="trailer-preview">
+            <video class="trailer-thumb" muted preload="metadata">
+              <source src="vids/smile2-trailer.mp4" type="video/mp4">
+            </video>
+            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            <div class="trailer-duration">2:20</div>
+          </div>
+          <div class="trailer-title">Smile 2 – Official Trailer</div>
+        </div>
+
+        <!-- ↓ UPDATE filename to match your vids folder -->
+        <div class="trailer-card" onclick="openTrailer('vids/nosferatu-trailer.mp4')">
+          <div class="trailer-preview">
+            <video class="trailer-thumb" muted preload="metadata">
+              <source src="vids/nosferatu-trailer.mp4" type="video/mp4">
+            </video>
+            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            <div class="trailer-duration">2:18</div>
+          </div>
+          <div class="trailer-title">Nosferatu – Official Trailer</div>
+        </div>
+
+        <!-- ↓ UPDATE filename to match your vids folder -->
+        <div class="trailer-card" onclick="openTrailer('vids/talktome-trailer.mp4')">
+          <div class="trailer-preview">
+            <video class="trailer-thumb" muted preload="metadata">
+              <source src="vids/talktome-trailer.mp4" type="video/mp4">
+            </video>
+            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            <div class="trailer-duration">2:05</div>
+          </div>
+          <div class="trailer-title">Talk To Me – Official Trailer</div>
+        </div>
+
+      </div>
+      <button class="slider-btn next" onclick="slide('trailers', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- BEST MOVIES -->
+    <div class="section-header">
+      <div class="title-badge">
+        <div class="red-line"></div>
+        <h2>Best Movies to Watch</h2>
+      </div>
+      <div class="view-link">View All <i class="fas fa-arrow-right"></i></div>
+    </div>
+
+    <div class="slider-wrapper">
+      <button class="slider-btn prev" onclick="slide('bestMovies', -1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="scroll-row" id="bestMovies">
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/shining.jpg" alt="The Shining">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.8 &nbsp; 1980</div>
+          </div>
+          <div class="movie-title-overlay">THE SHINING</div>
+        </div>
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/psycho.jpg" alt="Psycho">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.9 &nbsp; 1960</div>
+          </div>
+          <div class="movie-title-overlay">PSYCHO</div>
+        </div>
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/exorcist.jpg" alt="The Exorcist">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.7 &nbsp; 1973</div>
+          </div>
+          <div class="movie-title-overlay">THE EXORCIST</div>
+        </div>
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/hereditary.jpg" alt="Hereditary">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.6 &nbsp; 2018</div>
+          </div>
+          <div class="movie-title-overlay">HEREDITARY</div>
+        </div>
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/babadook.jpg" alt="The Babadook">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.6 &nbsp; 2014</div>
+          </div>
+          <div class="movie-title-overlay">THE BABADOOK</div>
+        </div>
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/quiet-place.jpg" alt="A Quiet Place">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.2 &nbsp; 2018</div>
+          </div>
+          <div class="movie-title-overlay">A QUIET PLACE</div>
+        </div>
+
+        <div class="movie-card small">
+          <div class="poster-img">
+            <img src="img/midsommar.jpg" alt="Midsommar">
+            <div class="best-meta"><i class="fas fa-star"></i> 9.3 &nbsp; 2019</div>
+          </div>
+          <div class="movie-title-overlay">MIDSOMMAR</div>
+        </div>
+
+      </div>
+      <button class="slider-btn next" onclick="slide('bestMovies', 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+
+      <div class="footer-col brand-col">
+        <div class="footer-logo">🍿</div>
+        <p class="footer-tagline">No queues, only thrills.</p>
+        <p class="footer-sub"><a href="#">Book your experience now.</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get Updates &amp; Offers</h4>
+        <div class="newsletter">
+          <input type="email" placeholder="Enter your email">
+          <button>Subscribe</button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal" onclick="closeTrailer(event)">
+  <div class="video-modal-inner">
+    <button class="video-close" onclick="closeTrailer()">
+      <i class="fas fa-times"></i>
+    </button>
+    <video id="trailerVideo" controls autoplay>
+      Your browser does not support video.
+    </video>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

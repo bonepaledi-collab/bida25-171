@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinemaholic Hub | Snacks & Drinks</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-film"></i>
+      <span>CINEMAHOLIC</span><span class="hub"> HUB</span>
+    </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="#">Movies</a>
+      <a href="#">Trending</a>
+      <a href="snacks.html" class="active">Snacks</a>
+      <a href="activity.html">My Activity</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-bar">
+        <input type="text" placeholder="Search movies...">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="icon-circle"><i class="far fa-bell"></i></div>
+      <div class="icon-circle"><i class="far fa-user"></i></div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="snacks-hero">
+    <div class="snacks-hero-overlay"></div>
+    <div class="snacks-hero-content">
+      <p class="snacks-hero-tag">GRAB BEFORE THE FRIGHTS</p>
+      <h1>SNACKS &<br><span>DRINKS</span></h1>
+      <p class="snacks-hero-sub">Fuel your movie experience with our delicious African snacks and refreshing drinks.</p>
+      <button class="snacks-hero-btn"><i class="fas fa-play-circle"></i> How It Works</button>
+    </div>
+    <div class="snacks-hero-imgs">
+      <img
+        src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=600&q=90"
+        alt="Cinema Popcorn"
+        class="hero-snack-main"
+      >
+    </div>
+  </div>
+
+  <!-- SNACKS LAYOUT -->
+  <div class="snacks-layout">
+    <div class="snacks-menu">
+      <div class="snack-tabs">
+        <button class="snack-tab active" onclick="filterSnacks('all', this)"><i class="fas fa-utensils"></i> All Snacks</button>
+        <button class="snack-tab" onclick="filterSnacks('popcorn', this)">Popcorn</button>
+        <button class="snack-tab" onclick="filterSnacks('drinks', this)">Drinks</button>
+        <button class="snack-tab" onclick="filterSnacks('combos', this)">Combos</button>
+        <button class="snack-tab" onclick="filterSnacks('snacks', this)">Snacks</button>
+        <button class="snack-tab" onclick="filterSnacks('sweets', this)">Sweets</button>
+      </div>
+
+      <div class="snacks-grid" id="snacksGrid">
+
+        <!-- POPCORN -->
+        <div class="snack-item" data-category="popcorn">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=300&q=80" alt="Classic Popcorn Regular">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Classic Popcorn</div>
+            <div class="snack-size">Regular</div>
+            <div class="snack-price">P15.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Classic Popcorn','Regular',15,'https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="popcorn">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&q=80" alt="Classic Popcorn Large">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Classic Popcorn</div>
+            <div class="snack-size">Large</div>
+            <div class="snack-price">P25.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Classic Popcorn','Large',25,'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="popcorn">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=300&q=80" alt="Spicy Popcorn">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Spicy Popcorn</div>
+            <div class="snack-size">Regular</div>
+            <div class="snack-price">P18.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Spicy Popcorn','Regular',18,'https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="popcorn">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606752954889-949d92c24b02?w=300&q=80" alt="Spicy Popcorn Large">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Spicy Popcorn</div>
+            <div class="snack-size">Large</div>
+            <div class="snack-price">P28.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Spicy Popcorn','Large',28,'https://images.unsplash.com/photo-1606752954889-949d92c24b02?w=300&q=80')">+ Add</button>
+        </div>
+
+        <!-- DRINKS -->
+        <div class="snack-item" data-category="drinks">
+          <div class="snack-img-wrap drink-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fanta_Orange_can.svg/200px-Fanta_Orange_can.svg.png" alt="Fanta Orange">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Fanta Orange</div>
+            <div class="snack-size">330ml Can</div>
+            <div class="snack-price">P12.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Fanta Orange','330ml',12,'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fanta_Orange_can.svg/200px-Fanta_Orange_can.svg.png')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="drinks">
+          <div class="snack-img-wrap drink-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/CocaColaCan2018.png/200px-CocaColaCan2018.png" alt="Coca-Cola">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Coca-Cola</div>
+            <div class="snack-size">330ml Can</div>
+            <div class="snack-price">P12.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Coca-Cola','330ml',12,'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/CocaColaCan2018.png/200px-CocaColaCan2018.png')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="drinks">
+          <div class="snack-img-wrap drink-wrap">
+            <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=300&q=80" alt="Cream Soda">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Cream Soda</div>
+            <div class="snack-size">330ml Can</div>
+            <div class="snack-price">P12.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Cream Soda','330ml',12,'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="drinks">
+          <div class="snack-img-wrap drink-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Coke_zero_can_2018.png/200px-Coke_zero_can_2018.png" alt="Coke Zero">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Coke Zero</div>
+            <div class="snack-size">330ml Can</div>
+            <div class="snack-price">P12.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Coke Zero','330ml',12,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Coke_zero_can_2018.png/200px-Coke_zero_can_2018.png')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="drinks">
+          <div class="snack-img-wrap drink-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Sprite_Can_2022.png/200px-Sprite_Can_2022.png" alt="Sprite">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Sprite</div>
+            <div class="snack-size">330ml Can</div>
+            <div class="snack-price">P12.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Sprite','330ml',12,'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Sprite_Can_2022.png/200px-Sprite_Can_2022.png')">+ Add</button>
+        </div>
+
+        <!-- AFRICAN SNACKS -->
+        <div class="snack-item" data-category="snacks">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?w=300&q=80" alt="Biltong">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Beef Biltong</div>
+            <div class="snack-size">50g Pack</div>
+            <div class="snack-price">P35.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Beef Biltong','50g',35,'https://images.unsplash.com/photo-1508424757105-b6d5ad9329d0?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="snacks">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600952841320-db92ec4047ca?w=300&q=80" alt="Simba Chips">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Simba Chips</div>
+            <div class="snack-size">Regular Pack</div>
+            <div class="snack-price">P10.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Simba Chips','Regular',10,'https://images.unsplash.com/photo-1600952841320-db92ec4047ca?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="snacks">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=300&q=80" alt="Niknaks">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Niknaks</div>
+            <div class="snack-size">Regular Pack</div>
+            <div class="snack-price">P8.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Niknaks','Regular',8,'https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="snacks">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?w=300&q=80" alt="Chompies">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Chompies</div>
+            <div class="snack-size">Peanut Snack</div>
+            <div class="snack-price">P8.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Chompies','Regular',8,'https://images.unsplash.com/photo-1567337710282-00832b415979?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="snacks">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&q=80" alt="Droewors">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Droewors</div>
+            <div class="snack-size">Dried Sausage 50g</div>
+            <div class="snack-price">P30.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Droewors','50g',30,'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&q=80')">+ Add</button>
+        </div>
+
+        <!-- SWEETS -->
+        <div class="snack-item" data-category="sweets">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=300&q=80" alt="Bar One">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Bar One</div>
+            <div class="snack-size">Chocolate Bar 55g</div>
+            <div class="snack-price">P15.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Bar One','55g',15,'https://images.unsplash.com/photo-1548907040-4baa42d10919?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="sweets">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1575377427642-087cf684f29d?w=300&q=80" alt="Lunch Bar">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Lunch Bar</div>
+            <div class="snack-size">Chocolate 45g</div>
+            <div class="snack-price">P12.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Lunch Bar','45g',12,'https://images.unsplash.com/photo-1575377427642-087cf684f29d?w=300&q=80')">+ Add</button>
+        </div>
+
+        <!-- COMBOS -->
+        <div class="snack-item" data-category="combos">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=300&q=80" alt="Movie Combo 1">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Movie Combo 1</div>
+            <div class="snack-size">Large Popcorn + Coke</div>
+            <div class="snack-price">P40.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Movie Combo 1','Popcorn + Coke',40,'https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="combos">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&q=80" alt="Movie Combo 2">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Movie Combo 2</div>
+            <div class="snack-size">Popcorn + Fanta + Biltong</div>
+            <div class="snack-price">P55.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Movie Combo 2','Popcorn + Fanta + Biltong',55,'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&q=80')">+ Add</button>
+        </div>
+
+        <div class="snack-item" data-category="combos">
+          <div class="snack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606752954889-949d92c24b02?w=300&q=80" alt="Family Combo">
+          </div>
+          <div class="snack-info">
+            <div class="snack-name">Family Combo</div>
+            <div class="snack-size">2x Popcorn + 2x Drinks</div>
+            <div class="snack-price">P90.00</div>
+          </div>
+          <button class="snack-add-btn" onclick="addToOrder('Family Combo','2x Popcorn + 2x Drinks',90,'https://images.unsplash.com/photo-1606752954889-949d92c24b02?w=300&q=80')">+ Add</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ORDER PANEL -->
+    <div class="order-panel">
+      <div class="order-card">
+        <div class="order-header">
+          <i class="fas fa-shopping-bag"></i>
+          <div>
+            <h3>YOUR ORDER</h3>
+            <p id="orderCount">0 items</p>
+          </div>
+        </div>
+        <div class="order-pickup">
+          <span>Pickup at</span>
+          <span class="pickup-location">Main Mall Cinema, Gaborone <span class="change-link">Change</span></span>
+        </div>
+        <div class="order-items" id="orderItems">
+          <div class="order-empty">
+            <i class="fas fa-shopping-basket"></i>
+            <p>Your order is empty</p>
+            <span>Add snacks and drinks to get started</span>
+          </div>
+        </div>
+        <div class="order-totals" id="orderTotals" style="display:none;">
+          <div class="order-total-row"><span>Subtotal</span><span id="subtotalVal">P0.00</span></div>
+          <div class="order-total-row"><span>Service Fee</span><span>P5.00</span></div>
+          <div class="order-total-row total-final"><span>Total</span><span id="totalVal" class="red">P0.00</span></div>
+        </div>
+        <button class="confirm-btn" id="confirmBtn" onclick="goToPayment()" style="display:none;">
+          Confirm &amp; Checkout <i class="fas fa-arrow-right"></i>
+        </button>
+        <div class="pickup-note" id="pickupNote" style="display:none;">
+          <i class="fas fa-user-circle"></i>
+          <p>Pick up your order at the cinema counter 15–20 mins before your show.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-it-works">
+    <p class="how-label">HOW IT WORKS</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-icon"><i class="fas fa-utensils"></i></div>
+        <h4>Choose</h4><p>Select your favorite snacks and drinks</p>
+      </div>
+      <div class="how-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="how-step">
+        <div class="how-icon"><i class="fas fa-cash-register"></i></div>
+        <h4>Checkout</h4><p>Review your order and proceed to checkout</p>
+      </div>
+      <div class="how-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="how-step">
+        <div class="how-icon"><i class="fas fa-ticket-alt"></i></div>
+        <h4>Pick Up</h4><p>Collect your order at the cinema counter</p>
+      </div>
+      <div class="how-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="how-step">
+        <div class="how-icon"><i class="fas fa-play-circle"></i></div>
+        <h4>Enjoy</h4><p>Sit back, relax and enjoy the show!</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+let orderItems = [];
+
+function filterSnacks(category, btn) {
+  document.querySelectorAll('.snack-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.snack-item').forEach(item => {
+    item.style.display = (category === 'all' || item.dataset.category === category) ? 'flex' : 'none';
+  });
+}
+
+function addToOrder(name, size, price, img) {
+  const existing = orderItems.find(i => i.name === name && i.size === size);
+  if (existing) { existing.qty++; }
+  else { orderItems.push({ name, size, price, qty: 1, img }); }
+  renderOrder();
+}
+
+function changeQty(index, delta) {
+  orderItems[index].qty += delta;
+  if (orderItems[index].qty <= 0) orderItems.splice(index, 1);
+  renderOrder();
+}
+
+function removeItem(index) {
+  orderItems.splice(index, 1);
+  renderOrder();
+}
+
+function renderOrder() {
+  const container  = document.getElementById('orderItems');
+  const countEl    = document.getElementById('orderCount');
+  const totalsEl   = document.getElementById('orderTotals');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const pickupNote = document.getElementById('pickupNote');
+  const subtotalEl = document.getElementById('subtotalVal');
+  const totalEl    = document.getElementById('totalVal');
+  const totalQty   = orderItems.reduce((s,i) => s + i.qty, 0);
+
+  countEl.textContent = `${totalQty} item${totalQty !== 1 ? 's' : ''}`;
+
+  if (orderItems.length === 0) {
+    container.innerHTML = `<div class="order-empty"><i class="fas fa-shopping-basket"></i><p>Your order is empty</p><span>Add snacks and drinks to get started</span></div>`;
+    totalsEl.style.display = confirmBtn.style.display = pickupNote.style.display = 'none';
+    return;
+  }
+
+  container.innerHTML = orderItems.map((item, i) => `
+    <div class="order-item">
+      <img src="${item.img}" class="order-item-img" alt="${item.name}">
+      <div class="order-item-info">
+        <div class="order-item-name">${item.name}</div>
+        <div class="order-item-size">${item.size}</div>
+        <div class="order-item-price red">P${item.price}.00</div>
+      </div>
+      <div class="order-item-controls">
+        <button onclick="removeItem(${i})"><i class="fas fa-trash"></i></button>
+        <button onclick="changeQty(${i}, -1)">−</button>
+        <span>${item.qty}</span>
+        <button onclick="changeQty(${i}, 1)">+</button>
+      </div>
+    </div>`).join('');
+
+  const subtotal = orderItems.reduce((s,i) => s + i.price * i.qty, 0);
+  subtotalEl.textContent   = `P${subtotal}.00`;
+  totalEl.textContent      = `P${subtotal + 5}.00`;
+  totalsEl.style.display   = 'block';
+  confirmBtn.style.display = 'block';
+  pickupNote.style.display = 'flex';
+}
+
+function goToPayment() {
+  const subtotal = orderItems.reduce((s,i) => s + i.price * i.qty, 0);
+  const orderData = {
+    type: 'snack',
+    items: orderItems,
+    subtotal,
+    serviceFee: 5,
+    total: subtotal + 5,
+    date: new Date().toISOString()
+  };
+  localStorage.setItem('ch_pendingOrder', JSON.stringify(orderData));
+  window.location.href = 'payment.html';
+}
+</script>
+</body>
+</html>

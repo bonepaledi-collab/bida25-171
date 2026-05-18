@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinemaholic Hub | My Activity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e50914;--red-dark:#b20710;
+  --bg:#090909;--surface:#111;--surface2:#141414;--surface3:#1a1a1a;
+  --border:#1e1e1e;--border2:#2a2a2a;--text:#f0f0f0;--muted:#888;--dim:#444;
+}
+body{background:var(--bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--text);min-height:100vh}
+.app{max-width:1440px;margin:0 auto}
+
+/* ── NAVBAR ── */
+.navbar{position:sticky;top:0;z-index:200;background:rgba(9,9,9,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:19px;cursor:pointer;text-decoration:none;}
+.logo i{color:var(--red);font-size:20px;}
+.logo span{color:#fff;}
+.logo .hub{color:var(--red);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:.2s;padding-bottom:4px;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:#fff;}
+.nav-links a.active{color:var(--red);border-bottom-color:var(--red);}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.search-wrap{background:var(--surface2);border:1px solid var(--border2);border-radius:40px;padding:7px 16px;display:flex;align-items:center;gap:8px;}
+.search-wrap input{background:transparent;border:none;outline:none;color:#fff;font-size:13px;width:160px;}
+.search-wrap i{color:var(--dim);font-size:13px;}
+.nav-icon{width:34px;height:34px;background:var(--surface2);border:1px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);position:relative;font-size:13px;}
+.notif-dot{position:absolute;top:4px;right:4px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1px solid var(--bg);}
+.nav-user{display:flex;align-items:center;gap:8px;cursor:pointer;color:#fff;font-size:13px;font-weight:600;}
+.nav-avatar{width:34px;height:34px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;}
+
+/* ── PAGE LAYOUT ── */
+.page{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 64px);}
+
+/* ── SIDEBAR ── */
+.sidebar{background:#060606;border-right:1px solid var(--border);padding:20px 12px;display:flex;flex-direction:column;gap:4px;}
+.sidebar-user{display:flex;gap:10px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;}
+.sidebar-avatar-placeholder{width:46px;height:46px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0;}
+.sidebar-name{font-size:14px;font-weight:700;color:#fff;}
+.sidebar-tag{font-size:11px;color:#666;margin:2px 0;}
+.sidebar-level{font-size:11px;color:#888;display:flex;align-items:center;gap:4px;}
+.sidebar-level i{color:var(--red);font-size:8px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;color:#666;text-decoration:none;font-size:13px;transition:.2s;cursor:pointer;border:none;background:transparent;width:100%;text-align:left;}
+.nav-item i{width:15px;text-align:center;font-size:13px;}
+.nav-item:hover{background:var(--surface);color:#fff;}
+.nav-item.active{background:rgba(229,9,20,0.12);color:#fff;border-left:3px solid var(--red);padding-left:9px;}
+.nav-item.logout{color:var(--red);margin-top:4px;border:1px solid rgba(229,9,20,0.2);}
+.nav-item.logout:hover{background:rgba(229,9,20,0.1);}
+.sidebar-promo{margin-top:auto;padding-top:16px;border-radius:10px;overflow:hidden;position:relative;border:1px solid rgba(229,9,20,0.2);}
+.sidebar-promo img{width:100%;height:110px;object-fit:cover;opacity:.4;display:block;}
+.sidebar-promo-text{position:absolute;inset:0;padding:12px;display:flex;flex-direction:column;justify-content:center;}
+.sidebar-promo-text strong{font-size:10px;color:#fff;letter-spacing:1.5px;text-transform:uppercase;}
+.sidebar-promo-text em{font-size:13px;color:var(--red);font-style:italic;font-weight:700;display:block;margin:2px 0;}
+.sidebar-promo-text p{font-size:10px;color:#aaa;margin-bottom:8px;}
+.explore-btn{background:var(--red);border:none;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s;}
+.explore-btn:hover{background:var(--red-dark);}
+
+/* ── MAIN ── */
+.main{padding:24px 28px;background:var(--bg);}
+.main-title{font-size:26px;font-weight:900;letter-spacing:1px;color:#fff;}
+.main-sub{font-size:12px;color:#666;margin-top:4px;margin-bottom:20px;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;}
+.stat-icon{width:42px;height:42px;border:1px solid rgba(229,9,20,0.3);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:18px;flex-shrink:0;}
+.stat-num{font-size:24px;font-weight:800;color:#fff;line-height:1;}
+.stat-lbl{font-size:11px;color:#666;margin-top:3px;}
+
+/* CONTENT GRID */
+.content-grid{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-bottom:18px;}
+
+/* SECTION */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.section-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.section-hdr h2{font-size:13px;font-weight:800;letter-spacing:1.5px;color:#fff;}
+.section-link{color:var(--red);font-size:12px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:4px;}
+.section-link:hover{text-decoration:underline;}
+
+/* BOOKING CARD */
+.bk-card{background:#0c0c0c;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px;display:flex;gap:14px;}
+.bk-poster{width:80px;height:110px;object-fit:cover;border-radius:7px;flex-shrink:0;background:#1a1a1a;}
+.bk-poster-placeholder{width:80px;height:110px;background:#1a1a1a;border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:28px;flex-shrink:0;border:1px solid #2a2a2a;}
+.bk-body{flex:1;min-width:0;}
+.bk-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.bk-title{font-size:14px;font-weight:700;color:#fff;}
+.bk-badge{font-size:10px;background:#1a1a1a;border:1px solid #333;color:#aaa;padding:2px 7px;border-radius:4px;margin-left:6px;}
+.bk-status{font-size:10px;padding:3px 9px;border-radius:20px;white-space:nowrap;font-weight:600;}
+.bk-status.upcoming{background:rgba(34,197,94,0.1);border:1px solid #22c55e;color:#22c55e;}
+.bk-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px 12px;margin-bottom:10px;}
+.bk-meta-item{font-size:11px;color:#666;display:flex;align-items:flex-start;gap:5px;}
+.bk-meta-item i{color:#555;font-size:10px;margin-top:2px;}
+.bk-meta-val{color:#bbb;font-weight:500;}
+.bk-meta-val.red{color:var(--red);}
+.bk-actions{display:flex;gap:7px;}
+.btn-sm{padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:5px;border:none;}
+.btn-outline{background:transparent;border:1px solid #333;color:#ccc;}
+.btn-outline:hover{border-color:#fff;color:#fff;}
+.btn-cancel{background:transparent;border:1px solid rgba(229,9,20,0.4);color:var(--red);}
+.btn-cancel:hover{background:rgba(229,9,20,0.1);}
+.bk-qr{width:60px;height:60px;background:#fff;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;padding:4px;}
+.bk-qr i{font-size:30px;color:#111;}
+.bk-qr span{font-size:7px;color:#555;font-weight:700;text-align:center;margin-top:2px;}
+
+/* FOOD ORDER */
+.fo-card{background:#0c0c0c;border:1px solid var(--border);border-radius:10px;padding:14px;}
+.fo-top{display:flex;gap:12px;margin-bottom:12px;}
+.fo-img{width:80px;height:80px;object-fit:cover;border-radius:8px;flex-shrink:0;}
+.fo-id{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.fo-row{font-size:11px;color:#666;margin-bottom:2px;}
+.fo-row span{color:#888;}
+.fo-status{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;background:rgba(255,165,0,0.1);border:1px solid orange;color:orange;white-space:nowrap;}
+.fo-col-hdr{display:grid;grid-template-columns:1fr auto auto;gap:8px;font-size:10px;color:#555;padding:4px 0;border-bottom:1px solid #1a1a1a;margin-bottom:4px;letter-spacing:1px;}
+.fo-item-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid #151515;font-size:12px;}
+.fo-item-name{color:#ccc;display:flex;align-items:center;gap:6px;}
+.fo-item-name img{width:20px;height:20px;object-fit:cover;border-radius:3px;}
+.fo-item-qty{color:#888;text-align:center;}
+.fo-item-price{color:var(--red);font-weight:600;text-align:right;}
+.fo-totals{margin-top:10px;font-size:12px;}
+.fo-total-row{display:flex;justify-content:space-between;color:#888;margin-bottom:4px;}
+.fo-total-row.final{font-size:14px;font-weight:700;color:#fff;margin-top:6px;padding-top:6px;border-top:1px solid #1e1e1e;}
+.fo-total-row.final span:last-child{color:var(--red);}
+.btn-red{width:100%;background:var(--red);border:none;color:#fff;padding:10px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s;}
+.btn-red:hover{background:var(--red-dark);}
+
+/* BOTTOM GRID */
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+
+/* PAY SUMMARY */
+.ps-row{display:flex;justify-content:space-between;font-size:13px;color:#888;margin-bottom:7px;}
+.ps-row.grand{font-size:15px;font-weight:800;color:#fff;margin-top:8px;padding-top:8px;border-top:1px solid #1e1e1e;}
+.ps-row.grand span:last-child{color:var(--red);}
+.ps-method{display:flex;align-items:center;gap:8px;margin:12px 0;font-size:12px;color:#888;}
+.btn-ghost{width:100%;background:transparent;border:1px solid #333;color:#aaa;padding:9px;border-radius:7px;font-size:12px;cursor:pointer;transition:.2s;}
+.btn-ghost:hover{border-color:#888;color:#fff;}
+
+/* HISTORY */
+.hist-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #181818;}
+.hist-poster{width:36px;height:48px;object-fit:cover;border-radius:5px;flex-shrink:0;background:#1a1a1a;}
+.hist-icon{width:36px;height:36px;background:#1a1a1a;border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:13px;flex-shrink:0;}
+.hist-info{flex:1;min-width:0;}
+.hist-title{font-size:13px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hist-sub{font-size:11px;color:#666;margin-top:2px;}
+.hist-seats{font-size:11px;color:#888;}
+.hist-right{text-align:right;}
+.hist-amount{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.hist-badge{font-size:10px;padding:3px 8px;border-radius:20px;background:rgba(34,197,94,0.1);border:1px solid #22c55e;color:#22c55e;}
+.hist-arrow{color:#444;font-size:11px;margin-left:6px;cursor:pointer;}
+
+/* WANT MORE */
+.want-more{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;}
+.want-more h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;}
+.want-more p{font-size:13px;color:#666;}
+.btn-explore{background:var(--red);border:none;color:#fff;padding:11px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.2s;}
+.btn-explore:hover{background:var(--red-dark);}
+
+/* EMPTY */
+.empty{text-align:center;padding:28px 16px;color:#444;}
+.empty i{font-size:28px;display:block;margin-bottom:10px;opacity:.4;}
+.empty p{font-size:13px;color:#555;margin-bottom:10px;}
+.btn-add{background:transparent;border:1px solid var(--red);color:var(--red);padding:7px 18px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;}
+.btn-add:hover{background:var(--red);color:#fff;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.content-grid{grid-template-columns:1fr}.bottom-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.page{grid-template-columns:1fr}.sidebar{display:none}.stats-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.navbar{padding:0 16px}.nav-links{display:none}.main{padding:16px}}
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='home.html'">
+      <i class="fas fa-film"></i>
+      <span>CINEMAHOLIC</span><span class="hub"> HUB</span>
+    </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="#">Movies</a>
+      <a href="#">TV Shows</a>
+      <a href="#">Trending</a>
+      <a href="snacks.html">Snacks</a>
+      <a href="activity.html" class="active">My Activity</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-wrap">
+        <input type="text" placeholder="Search movies, cinemas...">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="nav-icon"><i class="far fa-bell"></i><span class="notif-dot"></span></div>
+      <div class="nav-user">
+        <div class="nav-avatar" id="navAvatar">K</div>
+        <span id="navName">Kagiso</span>
+        <i class="fas fa-chevron-down" style="font-size:10px;color:#666;"></i>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar-placeholder" id="sidebarAvatar">K</div>
+        <div>
+          <div class="sidebar-name" id="sidebarName">Hello, Kagiso</div>
+          <div class="sidebar-tag">Fear is better when shared.</div>
+          <div class="sidebar-level"><i class="fas fa-circle"></i> Level 4</div>
+        </div>
+      </div>
+
+      <a href="#" class="nav-item active"><i class="fas fa-th-large"></i> Overview</a>
+      <a href="#" class="nav-item"><i class="fas fa-ticket-alt"></i> My Bookings</a>
+      <a href="#" class="nav-item"><i class="fas fa-utensils"></i> Food Orders</a>
+      <a href="#" class="nav-item"><i class="fas fa-credit-card"></i> Payment Methods</a>
+      <a href="#" class="nav-item"><i class="fas fa-heart"></i> Watchlist</a>
+      <a href="#" class="nav-item"><i class="fas fa-star"></i> Reviews</a>
+      <a href="#" class="nav-item"><i class="fas fa-gift"></i> Rewards</a>
+      <a href="#" class="nav-item"><i class="fas fa-cog"></i> Account Settings</a>
+      <button class="nav-item logout" onclick="handleLogout()">
+        <i class="fas fa-sign-out-alt"></i> Log Out
+      </button>
+
+      <div class="sidebar-promo">
+        <img src="img/the-conjuring-movies-in-order-01-the-nun-1660834034.avif" alt="Promo">
+        <div class="sidebar-promo-text">
+          <strong>The Horror Experience</strong>
+          <em>Awaits You</em>
+          <p>Book more. Watch more. Get exclusive rewards.</p>
+          <button class="explore-btn" onclick="window.location.href='home.html'">Explore Rewards</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <div class="main-title">MY ACTIVITY</div>
+      <div class="main-sub">All your movie bookings and food orders in one place.</div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-ticket-alt"></i></div>
+          <div><div class="stat-num" id="statBookings">0</div><div class="stat-lbl">Upcoming Bookings</div></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+          <div><div class="stat-num" id="statOrders">0</div><div class="stat-lbl">Food Orders</div></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+          <div><div class="stat-num" id="statSpent">P0</div><div class="stat-lbl">Total Spent</div></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fas fa-star"></i></div>
+          <div><div class="stat-num" id="statPoints">0</div><div class="stat-lbl">Reward Points</div></div>
+        </div>
+      </div>
+
+      <!-- BOOKINGS + FOOD ORDERS -->
+      <div class="content-grid">
+
+        <div class="section">
+          <div class="section-hdr">
+            <h2>UPCOMING MOVIE BOOKINGS</h2>
+            <a href="#" class="section-link">View All Bookings <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div id="bookingsList">
+            <div class="empty">
+              <i class="fas fa-ticket-alt"></i>
+              <p>No upcoming bookings</p>
+              <button class="btn-add" onclick="window.location.href='home.html'">Browse Movies</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-hdr">
+            <h2>FOOD ORDERS</h2>
+            <a href="#" class="section-link">View All Orders <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div id="foodOrdersList">
+            <div class="empty">
+              <i class="fas fa-utensils"></i>
+              <p>No food orders yet</p>
+              <button class="btn-add" onclick="window.location.href='snacks.html'">Order Snacks</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PAYMENT SUMMARY + HISTORY -->
+      <div class="bottom-grid">
+
+        <div class="section">
+          <div class="section-hdr"><h2>PAYMENT SUMMARY</h2></div>
+          <div class="ps-row"><span>Movie Tickets Total</span><span id="psTickets">P0.00</span></div>
+          <div class="ps-row"><span>Food &amp; Drinks Total</span><span id="psFood">P0.00</span></div>
+          <div class="ps-row"><span>Service Fee</span><span id="psService">P0.00</span></div>
+          <div class="ps-row grand"><span>GRAND TOTAL</span><span id="psGrand">P0.00</span></div>
+          <div class="ps-method">
+            <i class="fab fa-cc-mastercard" style="font-size:20px;color:#eb001b;"></i>
+            <span>Payment Method &nbsp;•••• 4242</span>
+          </div>
+          <button class="btn-ghost">View Payment History</button>
+        </div>
+
+        <div class="section">
+          <div class="section-hdr">
+            <h2>BOOKING HISTORY</h2>
+            <a href="#" class="section-link">View All History <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div id="historyList">
+            <div class="empty">
+              <i class="fas fa-history"></i>
+              <p>No history yet</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- WANT MORE -->
+      <div class="want-more">
+        <div>
+          <h3>Want more scares?</h3>
+          <p>Check out exclusive horror events and midnight screenings.</p>
+        </div>
+        <button class="btn-explore" onclick="window.location.href='home.html'">
+          Explore Events <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+// ── helpers ──
+function formatDate(d) {
+  if (!d) return '';
+  // if it's already a readable string like "Today, May 17" just return it
+  if (isNaN(Date.parse(d))) return d;
+  return new Date(d).toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short', year:'numeric'});
+}
+
+function posterHTML(img, title, cssClass) {
+  if (img && img.trim()) {
+    return `<img class="${cssClass}" src="${img}" alt="${title||''}"
+              onerror="this.outerHTML='<div class=bk-poster-placeholder><i class=fas\\ fa-film></i></div>'">`;
+  }
+  return `<div class="bk-poster-placeholder"><i class="fas fa-film"></i></div>`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── User info ──
+  const userStr = localStorage.getItem('ch_currentUser');
+  if (userStr) {
+    const user      = JSON.parse(userStr);
+    const initials  = user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+    const firstName = user.name.split(' ')[0];
+    document.getElementById('sidebarAvatar').textContent = initials;
+    document.getElementById('sidebarName').textContent   = `Hello, ${firstName}`;
+    document.getElementById('navAvatar').textContent     = initials;
+    document.getElementById('navName').textContent       = firstName;
+  }
+
+  const activity     = JSON.parse(localStorage.getItem('ch_activity') || '[]');
+  const ticketOrders = activity.filter(a => a.type === 'ticket');
+  const foodOrders   = activity.filter(a => a.type === 'snack');
+
+  // ── Stats ──
+  const totalSpent = activity.reduce((s,a) => s + (a.total || 0), 0);
+  document.getElementById('statBookings').textContent = ticketOrders.length;
+  document.getElementById('statOrders').textContent   = foodOrders.length;
+  document.getElementById('statSpent').textContent    = `P${totalSpent}`;
+  document.getElementById('statPoints').textContent   = activity.length * 30;
+
+  // ── Upcoming Bookings ──
+  const bookingsEl = document.getElementById('bookingsList');
+  if (ticketOrders.length > 0) {
+    bookingsEl.innerHTML = ticketOrders.slice(0,2).map(order => {
+      const seats   = Array.isArray(order.seats) ? order.seats.join(', ') : (order.seats || '—');
+      const tickets = order.ticketCount || (Array.isArray(order.seats) ? order.seats.length : 1);
+      const orderId = order.id || ('BK' + Math.floor(1000 + Math.random()*9000));
+      const dateStr = formatDate(order.date);
+      return `
+      <div class="bk-card">
+        ${posterHTML(order.img, order.title, 'bk-poster')}
+        <div class="bk-body">
+          <div class="bk-top">
+            <div>
+              <span class="bk-title">${order.title || 'Movie Ticket'}</span>
+              <span class="bk-badge">16+</span>
+            </div>
+            <span class="bk-status upcoming">Upcoming</span>
+          </div>
+          <div class="bk-meta">
+            <div class="bk-meta-item"><i class="far fa-calendar"></i><div><div style="color:#555;font-size:10px;">Date</div><div class="bk-meta-val">${dateStr}</div></div></div>
+            <div class="bk-meta-item"><i class="far fa-clock"></i><div><div style="color:#555;font-size:10px;">Time</div><div class="bk-meta-val">${order.time || '—'}</div></div></div>
+            <div class="bk-meta-item"><i class="fas fa-map-marker-alt"></i><div><div style="color:#555;font-size:10px;">Cinema</div><div class="bk-meta-val">${order.cinema || '—'}</div></div></div>
+            <div class="bk-meta-item"><i class="fas fa-couch"></i><div><div style="color:#555;font-size:10px;">Seats</div><div class="bk-meta-val red">${seats}</div></div></div>
+            <div class="bk-meta-item"><i class="fas fa-ticket-alt"></i><div><div style="color:#555;font-size:10px;">Tickets</div><div class="bk-meta-val">${tickets} x Standard</div></div></div>
+            <div class="bk-meta-item"><i class="fas fa-tag"></i><div><div style="color:#555;font-size:10px;">Amount</div><div class="bk-meta-val red">P${order.total}.00</div></div></div>
+          </div>
+          <div class="bk-actions">
+            <button class="btn-sm btn-outline"><i class="fas fa-qrcode"></i> View Ticket</button>
+            <button class="btn-sm btn-cancel">Cancel Booking</button>
+          </div>
+        </div>
+        <div class="bk-qr">
+          <i class="fas fa-qrcode"></i>
+          <span>${orderId}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Food Orders ──
+  const foodEl = document.getElementById('foodOrdersList');
+  if (foodOrders.length > 0) {
+    const fo   = foodOrders[0];
+    const foId = fo.id || ('#FOOD' + Math.floor(1000 + Math.random()*9000));
+    foodEl.innerHTML = `
+      <div class="fo-card">
+        <div class="fo-top">
+          <img class="fo-img"
+            src="https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=200&q=80"
+            alt="Food Order"
+            onerror="this.src='https://via.placeholder.com/80x80/1a1a1a/e50914?text=🍿'">
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <div class="fo-id">${foId}</div>
+                <div class="fo-row">Order Time &nbsp;<span>${new Date(fo.date).toLocaleString()}</span></div>
+                <div class="fo-row">Pickup At &nbsp;<span>${fo.cinema || 'Riverwalk Cinema'}</span></div>
+                <div class="fo-row">Status</div>
+              </div>
+              <span class="fo-status">${fo.status || 'Ready for Pickup'}</span>
+            </div>
+          </div>
+        </div>
+        <div class="fo-col-hdr"><span>ITEM</span><span>QTY</span><span>PRICE</span></div>
+        <div>
+          ${(fo.items || []).map(i => `
+            <div class="fo-item-row">
+              <span class="fo-item-name">
+                <img src="${i.img || ''}" alt="${i.name}" onerror="this.style.display='none'">
+                ${i.name}
+              </span>
+              <span class="fo-item-qty">${i.qty}</span>
+              <span class="fo-item-price">P${i.price * i.qty}.00</span>
+            </div>`).join('')}
+        </div>
+        <div class="fo-totals">
+          <div class="fo-total-row"><span>Subtotal</span><span>P${fo.subtotal}.00</span></div>
+          <div class="fo-total-row"><span>Service Fee</span><span>P${fo.serviceFee || 5}.00</span></div>
+          <div class="fo-total-row final"><span>Total</span><span>P${fo.total}.00</span></div>
+        </div>
+        <button class="btn-red">View Order Details</button>
+      </div>`;
+  }
+
+  // ── Payment Summary ──
+  const ticketsTotal = ticketOrders.reduce((s,a) => s + (a.subtotal || 0), 0);
+  const foodTotal    = foodOrders.reduce((s,a)   => s + (a.subtotal || 0), 0);
+  const serviceTotal = activity.reduce((s,a)     => s + (a.serviceFee || 0), 0);
+  document.getElementById('psTickets').textContent = `P${ticketsTotal}.00`;
+  document.getElementById('psFood').textContent    = `P${foodTotal}.00`;
+  document.getElementById('psService').textContent = `P${serviceTotal}.00`;
+  document.getElementById('psGrand').textContent   = `P${totalSpent}.00`;
+
+  // ── History ──
+  const histEl = document.getElementById('historyList');
+  if (activity.length > 0) {
+    histEl.innerHTML = activity.slice(0,5).map(order => {
+      const dateStr = formatDate(order.date);
+      const seats   = order.seats ? (Array.isArray(order.seats) ? order.seats.join(', ') : order.seats) : '';
+      return `
+      <div class="hist-item">
+        ${order.img && order.img.trim()
+          ? `<img class="hist-poster" src="${order.img}" alt="${order.title||''}" onerror="this.outerHTML='<div class=hist-icon><i class=fas\\ fa-ticket-alt></i></div>'">`
+          : `<div class="hist-icon"><i class="fas fa-${order.type==='snack'?'utensils':'ticket-alt'}"></i></div>`}
+        <div class="hist-info">
+          <div class="hist-title">${order.type==='snack' ? 'Food Order' : (order.title || 'Movie Ticket')}</div>
+          <div class="hist-sub">${dateStr}${order.time ? ' • ' + order.time : ''}</div>
+          ${seats ? `<div class="hist-seats">Seats ${seats}</div>` : ''}
+        </div>
+        <div class="hist-right">
+          <div class="hist-amount">P${order.total}.00</div>
+          <span class="hist-badge">Completed</span>
+        </div>
+        <i class="fas fa-chevron-right hist-arrow"></i>
+      </div>`;
+    }).join('');
+  }
+
+});
+</script>
+</body>
+</html>

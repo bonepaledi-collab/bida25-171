@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinemaholic Hub | Sign In</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- Background posters -->
+  <div class="auth-bg">
+    <img src="img/the-conjuring-movies-in-order-01-the-nun-1660834034.avif" alt="">
+    <img src="img/E4DEAA0E-647D-441E-B1D0-8C6AC5213D3B.webp" alt="">
+    <img src="img/exorcist.jpg" alt="">
+    <img src="img/hereditary.jpg" alt="">
+    <img src="img/babadook.jpg" alt="">
+    <img src="img/will-james-review-the-new-nosferatu-movie-or-not-v0-muxqx5qnlfld1.webp" alt="">
+  </div>
+  <div class="auth-bg-overlay"></div>
+
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <i class="fas fa-film"></i>
+      <span>CINEMAHOLIC</span><span class="hub"> HUB</span>
+    </div>
+
+    <!-- ══ SIGN IN ══ -->
+    <div class="auth-panel" id="signinPanel">
+      <h1>Welcome Back</h1>
+      <p class="auth-sub">Sign in to continue your cinematic journey</p>
+
+      <p class="auth-error" id="loginError"></p>
+
+      <div class="auth-field">
+        <label>Email Address</label>
+        <div class="auth-input">
+          <i class="far fa-envelope"></i>
+          <input type="email" id="loginEmail" placeholder="Enter your email">
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label>Password</label>
+        <div class="auth-input">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="loginPass" placeholder="Enter your password">
+          <i class="far fa-eye toggle-pass" onclick="togglePass('loginPass', this)"></i>
+        </div>
+      </div>
+
+      <div class="auth-row">
+        <label class="checkbox-label">
+          <input type="checkbox" id="rememberMe" checked>
+          <span class="checkmark"></span>
+          Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot Password?</a>
+      </div>
+
+      <button class="auth-btn" onclick="handleLogin()">Sign In</button>
+
+      <div class="auth-or"><span>or</span></div>
+
+      <div class="social-auth">
+        <button class="social-btn"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="G"> Google</button>
+        <button class="social-btn"><img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="F"> Facebook</button>
+        <button class="social-btn"><i class="fab fa-apple"></i> Apple</button>
+      </div>
+
+      <p class="auth-switch">Don't have an account? <a href="#" onclick="switchPanel('signup')">Create Account</a></p>
+    </div>
+
+    <!-- ══ SIGN UP ══ -->
+    <div class="auth-panel hidden" id="signupPanel">
+      <h1>Create Account</h1>
+      <p class="auth-sub">Join Cinemaholic Hub and explore endless movies</p>
+
+      <p class="auth-error" id="registerError"></p>
+
+      <div class="auth-field">
+        <label>Full Name</label>
+        <div class="auth-input">
+          <i class="far fa-user"></i>
+          <input type="text" id="regName" placeholder="Enter your full name">
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label>Email Address</label>
+        <div class="auth-input">
+          <i class="far fa-envelope"></i>
+          <input type="email" id="regEmail" placeholder="Enter your email">
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label>Password</label>
+        <div class="auth-input">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="regPass" placeholder="Create a password">
+          <i class="far fa-eye toggle-pass" onclick="togglePass('regPass', this)"></i>
+        </div>
+      </div>
+
+      <div class="auth-field">
+        <label>Confirm Password</label>
+        <div class="auth-input">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="confirmPass" placeholder="Confirm your password">
+          <i class="far fa-eye toggle-pass" onclick="togglePass('confirmPass', this)"></i>
+        </div>
+      </div>
+
+      <label class="checkbox-label terms">
+        <input type="checkbox" id="termsCheck">
+        <span class="checkmark"></span>
+        I agree to the <a href="#">Terms of Service and Privacy Policy</a>
+      </label>
+
+      <button class="auth-btn" onclick="handleRegister()">Create Account</button>
+
+      <div class="auth-or"><span>or</span></div>
+
+      <div class="social-auth">
+        <button class="social-btn"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="G"> Google</button>
+        <button class="social-btn"><img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="F"> Facebook</button>
+        <button class="social-btn"><i class="fab fa-apple"></i> Apple</button>
+      </div>
+
+      <p class="auth-switch">Already have an account? <a href="#" onclick="switchPanel('signin')">Sign In</a></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function switchPanel(to) {
+    document.getElementById('signinPanel').classList.toggle('hidden', to === 'signup');
+    document.getElementById('signupPanel').classList.toggle('hidden', to === 'signin');
+    document.getElementById('loginError').textContent = '';
+    document.getElementById('registerError').textContent = '';
+  }
+
+  function togglePass(inputId, icon) {
+    const input = document.getElementById(inputId);
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      input.type = 'password';
+      icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+  }
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
